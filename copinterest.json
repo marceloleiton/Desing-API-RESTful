@@ -1,0 +1,2219 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "1.0.0",
+    "title": "Copinterest"
+  },
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/boards/": {
+      "put": {
+        "tags": [
+          "boards"
+        ],
+        "summary": "Create board",
+        "description": "Creates a board for the currently logged-in user.",
+        "operationId": "create_board",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Board object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/boards"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create Success",
+            "schema": {
+              "$ref": "#/definitions/api_response_data_boards"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "boards"
+        ],
+        "summary": "Get all boards",
+        "description": "View all boards.",
+        "operationId": "view_boards",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/api_response_data_boards"
+            }
+          }
+        }
+      }
+    },
+    "/boards/{board}": {
+      "delete": {
+        "tags": [
+          "boards"
+        ],
+        "summary": "Deletes a board object, given its ID.",
+        "description": "Deletes a board object, given its ID.",
+        "operationId": "delete_board",
+        "parameters": [
+          {
+            "name": "board",
+            "in": "path",
+            "description": "Board ID.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted Success",
+            "schema": {
+              "$ref": "#/definitions/api_response_id_boards"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Not ID found"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "boards"
+        ],
+        "summary": "Get board",
+        "description": "Gets a board object given its ID.",
+        "operationId": "get_board",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "board",
+            "in": "path",
+            "description": "Board ID.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/api_response_data_boards"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "boards"
+        ],
+        "summary": "Update board",
+        "description": "Updates a board object.",
+        "operationId": "update_board",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "board",
+            "in": "path",
+            "description": "Board ID.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Success",
+            "schema": {
+              "$ref": "#/definitions/api_response_data_boards"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/boards/{board}/follow/": {
+      "delete": {
+        "tags": [
+          "boards"
+        ],
+        "summary": "Unfollow board",
+        "description": "Unfollows a board for the calling user.",
+        "operationId": "unfollow_board",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "board",
+            "in": "path",
+            "description": "Board ID.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Follow Success",
+            "schema": {
+              "$ref": "#/definitions/api_response_follow_boards"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "boards"
+        ],
+        "summary": "Follow board",
+        "description": "The calling user follows a board, given its ID.",
+        "operationId": "follow_board",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "board",
+            "in": "path",
+            "description": "Board ID.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/api_response_follow_boards"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/boards/{board}/pins/": {
+      "get": {
+        "tags": [
+          "boards"
+        ],
+        "summary": "Get board pins",
+        "description": "Returns a board's pin objects.",
+        "operationId": "get_board_pins",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "board",
+            "in": "path",
+            "description": "Board ID.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/api_response_get_pins"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/users/{followee}/follow/": {
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Follow a user",
+        "description": "Lets a user, follow a board.",
+        "operationId": "follow_user",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "followee",
+            "in": "path",
+            "description": "Id that needs to be added",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api_response_follow"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found."
+          },
+          "405": {
+            "description": "Validation exception"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Unfollow a user",
+        "description": "Lets a user, unfollow a borad.",
+        "operationId": "unfollow",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "followee",
+            "in": "path",
+            "description": "user id to unfollow",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "succes",
+            "schema": {
+              "$ref": "#/definitions/api_response_unfollow"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "user not found"
+          }
+        }
+      }
+    },
+    "/users/": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Add a new user.",
+        "description": "create a new user.",
+        "operationId": "add_user",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "user added"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get all users information sorted by",
+        "description": "Gets information about all users sorted by name or id.",
+        "operationId": "getUsers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Parameter to sort the users.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "id",
+                "name"
+              ],
+              "default": "id"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/api_response_users"
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/users/{user}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get user information",
+        "description": "Gets information about a user.",
+        "operationId": "get_user",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "description": "The id that needs to be fetched. ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/api_response_user"
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/users/{user}/boards/feed": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get user's boards",
+        "description": "Gets a user's boards.",
+        "operationId": "get_user_boards",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "description": "The id that needs to be fetched. ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Status values that need to be considered for filter",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "alphabetical",
+                "newest",
+                "oldest"
+              ],
+              "default": "newest"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "include_empty",
+            "in": "query",
+            "description": "Status values that need to be considered for filter",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "false",
+                "true"
+              ],
+              "default": "true"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/api_response_boards"
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/users/{user}/pins/": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get user's pins",
+        "description": "Gets a user's pins.",
+        "operationId": "get_user_pins",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "description": "The id that needs to be fetched.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/api_response_pins"
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/boards/sections/{board_section_id}": {
+      "delete": {
+        "tags": [
+          "boards_sections"
+        ],
+        "summary": "Delete board section",
+        "description": "Deletes a board section, given its ID.",
+        "operationId": "delete_board_section",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "board_section_id",
+            "in": "path",
+            "description": "board section id to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/api_response_d"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Board section id not found"
+          }
+        }
+      }
+    },
+    "/boards/sections/{board_section_id}/pins/": {
+      "get": {
+        "tags": [
+          "boards_sections"
+        ],
+        "summary": "Gets a board section's pins",
+        "description": "",
+        "operationId": "get_board_pin",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "board_section_id",
+            "in": "path",
+            "description": "id board section where is pins",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/api_response_get_pins"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/boards/{board_id}/sections/": {
+      "get": {
+        "tags": [
+          "boards_sections"
+        ],
+        "summary": "Gets section objects for a board",
+        "description": "",
+        "operationId": "get_section",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "board_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/api_response_get_board"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "boards_sections"
+        ],
+        "summary": "Create a board section",
+        "description": "",
+        "operationId": "create_board_section",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "board_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "initial",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "description": "ids of initial board pins",
+            "items": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/api_response_create"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "boards_sections"
+        ],
+        "summary": "Update an existing board section",
+        "description": "",
+        "operationId": "update_board_section",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "board_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/board_section"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/api_response_create"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "board section not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/searchs/{user}/boards/": {
+      "get": {
+        "tags": [
+          "searchs"
+        ],
+        "summary": "search a boards users",
+        "description": "",
+        "operationId": "search_user_boards",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api_response_search_user_pin"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pin not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/partners/pins/{pin}/save/": {
+      "post": {
+        "tags": [
+          "pins"
+        ],
+        "summary": "save a pin",
+        "description": "",
+        "operationId": "save_pin",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pin",
+            "in": "path",
+            "description": "Pin Id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "board_id",
+            "in": "body",
+            "description": "Board id",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pin/properties/board_id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api_response_pin"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pin not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/pins": {
+      "put": {
+        "tags": [
+          "pins"
+        ],
+        "summary": "create a pin",
+        "description": "",
+        "operationId": "create_pin",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "board_id",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pin/properties/board_id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api_response_pin"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pin not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/pins/{pin}/": {
+      "delete": {
+        "tags": [
+          "pins"
+        ],
+        "summary": "delete a pin",
+        "description": "",
+        "operationId": "delete_pin",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pin",
+            "in": "path",
+            "description": "pin id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete Success",
+            "schema": {
+              "$ref": "#/definitions/api_response_pin_delete"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pin not found"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "pins"
+        ],
+        "summary": "get a pin",
+        "description": "Gets a pin object given its ID",
+        "operationId": "get_pin",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pin",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api_response_pin_sin_endpoint"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pin not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/pins/{pin}/comments/": {
+      "get": {
+        "tags": [
+          "pins"
+        ],
+        "summary": "get a comments",
+        "description": "",
+        "operationId": "get_pin_comments",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pin",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api_response_pin_comments"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pin not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/search/user_pins/{user}/": {
+      "get": {
+        "tags": [
+          "searchs"
+        ],
+        "summary": "search a pins users",
+        "description": "",
+        "operationId": "search_user_pins",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/api_response_search_board"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pin not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/oauth/access_token/": {
+      "put": {
+        "tags": [
+          "oauth"
+        ],
+        "summary": "Exchange auth code for access token",
+        "description": "Gets an access token for calling APIs. Making this call is a step in our authentication process.",
+        "operationId": "get_oauth",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/oauth"
+            }
+          }
+        }
+      }
+    },
+    "/domains/{domain_name}/": {
+      "get": {
+        "tags": [
+          "domains"
+        ],
+        "summary": "Gets domain information",
+        "description": "A domain object (see object documentation under Responses > 200 Success > data below)..",
+        "operationId": "get_domains",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "domain_name",
+            "in": "path",
+            "description": "Domain Name",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/domain_information"
+            }
+          }
+        }
+      }
+    },
+    "/domains/{domain_name}/pins/": {
+      "get": {
+        "tags": [
+          "domains"
+        ],
+        "summary": "Gets a domain's pins.",
+        "description": "Domain pin object array (see object documentation under Responses > 200 Success > data below).",
+        "operationId": "get_domain_pins",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "domain_name",
+            "in": "path",
+            "description": "Domain Name",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/domain_pins"
+            }
+          }
+        }
+      }
+    },
+    "/domains/{domain}/pins/recent/": {
+      "get": {
+        "tags": [
+          "domains"
+        ],
+        "summary": "Gets the most recent pins from your domain",
+        "description": "Domain pin object array (see object documentation under Responses > 200 Success > data below).",
+        "operationId": "get_your_domain_pins",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "Domain",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/your_domain_pins"
+            }
+          }
+        }
+      }
+    },
+    "/domains/{domain}/pins/sample/": {
+      "get": {
+        "tags": [
+          "domains"
+        ],
+        "summary": "Get a domain's top sample pins.",
+        "description": "Domain pin object array (see object documentation under Responses > 200 Success > data below).",
+        "operationId": "get_domain_top_sample_pins",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "Domain",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/domain_top_sample_pins"
+            }
+          }
+        }
+      }
+    },
+    "/domains/{domain}/pins/top/clicks/": {
+      "get": {
+        "tags": [
+          "domains"
+        ],
+        "summary": "Get most clicked pins",
+        "description": "This API call returns the list of pins from the domain ordered by click count value over a specified period of time",
+        "operationId": "get_most_clicked_pins",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "Domain",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/most_clicked_pins"
+            }
+          }
+        }
+      }
+    },
+    "/domains/{domain}/pins/top/repins/": {
+      "get": {
+        "tags": [
+          "domains"
+        ],
+        "summary": "Get the most repinned Pins",
+        "description": "Our Top Repins Domain endpoint lets you display a collection of the most repinned Pins from your domain over a certain period of time.",
+        "operationId": "get_most_repinnedd_pins",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "description": "Domain",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/most_repinned_pins"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "boards": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Board ID",
+          "default": "1"
+        },
+        "name": {
+          "type": "string",
+          "description": "Board name.",
+          "default": "first board"
+        },
+        "category": {
+          "type": "string",
+          "description": "Board category",
+          "enum": [
+            "animals",
+            "apparel",
+            "architecture",
+            "art",
+            "art_arch",
+            "cars_motorcycles",
+            "celebrities",
+            "celebrities_public_figures",
+            "commerce",
+            "corgis",
+            "culture",
+            "design",
+            "diy_crafts",
+            "education",
+            "everything",
+            "fashion",
+            "featured",
+            "film_music_books",
+            "fitness",
+            "food_drink",
+            "for_dad",
+            "fresh",
+            "gardening",
+            "geek",
+            "gift_guides",
+            "gifts",
+            "hair_beauty",
+            "health_fitness",
+            "history",
+            "holidays",
+            "holidays_events",
+            "home",
+            "home_decor",
+            "home_improvement",
+            "humor",
+            "illustrations_posters",
+            "kids",
+            "men_apparel",
+            "mens_fashion",
+            "mylife",
+            "other",
+            "outdoors",
+            "people",
+            "pets",
+            "photography",
+            "popular",
+            "prints_posters",
+            "products",
+            "tattoos",
+            "technology",
+            "travel",
+            "travel_places",
+            "videos",
+            "wedding_events",
+            "weddings",
+            "women_apparel",
+            "womens_fashion"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "description": "Board description",
+          "default": "this is the first description of the board"
+        },
+        "event_date": {
+          "type": "string",
+          "description": "Event date (UTC). Boards can be used to promote events. Format: YYYY-MM-DD",
+          "default": "2021-04-12"
+        },
+        "event_start_date": {
+          "type": "string",
+          "description": "Event start date (UTC): YYYY-MM-DD",
+          "default": "2021-04-13"
+        },
+        "initial_pins": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "IDs of initial board pins.",
+          "default": "fhesjfh"
+        },
+        "follower_count": {
+          "type": "integer",
+          "description": "nomber of board followeers",
+          "default": "3"
+        },
+        "images": {
+          "type": "string",
+          "description": "Board image",
+          "default": "image.jpg"
+        },
+        "cover": {
+          "type": "string",
+          "description": "Board cover",
+          "default": "https://i.pinimg.com/550x/40/88/ed/4088eda9ce2153483f8dce96d1a50388.jpg"
+        },
+        "layout": {
+          "type": "string",
+          "description": "Board layout.",
+          "enum": [
+            "class_community",
+            "taught_classes",
+            "places",
+            "quick_saves",
+            "screenshot",
+            "travel"
+          ]
+        },
+        "return_existing": {
+          "type": "boolean",
+          "description": "If a board exists with the same slug for the user, return it. A URL slug is the part of a URL or link that comes after the domain extension. In rebrandly.rocks/content-curation - 'content-curation' is the URL slug.",
+          "default": false
+        }
+      }
+    },
+    "api_response_data_boards": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/boards"
+        },
+        "message": {
+          "type": "string",
+          "default": "ok"
+        },
+        "status": {
+          "type": "string",
+          "default": "success"
+        }
+      }
+    },
+    "api_response_id_boards": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "$ref": "#/definitions/boards/properties/id"
+        },
+        "message": {
+          "type": "string",
+          "default": "ok"
+        },
+        "status": {
+          "type": "string",
+          "default": "success"
+        }
+      }
+    },
+    "api_response_follow_boards": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "object"
+        },
+        "message": {
+          "type": "string",
+          "default": "ok"
+        },
+        "status": {
+          "type": "string",
+          "default": "success"
+        }
+      }
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_pins": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "schema": {
+                "$ref": "#/definitions/pin"
+              }
+            }
+          }
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_users": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "schema": {
+                "$ref": "#/definitions/user"
+              }
+            }
+          }
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_boards": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "schema": {
+                "$ref": "#/definitions/boards"
+              }
+            }
+          }
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_user": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "first_name": {
+              "$ref": "#/definitions/user/properties/first_name"
+            },
+            "last_name": {
+              "$ref": "#/definitions/user/properties/last_name"
+            },
+            "id": {
+              "$ref": "#/definitions/user/properties/id"
+            },
+            "following": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "followers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_follow": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "type": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            }
+          }
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_unfollow": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "board_section": {
+      "type": "object",
+      "properties": {
+        "board_section_id": {
+          "type": "string"
+        },
+        "tytle": {
+          "type": "string"
+        },
+        "pin_count": {
+          "type": "string"
+        },
+        "pins": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "schema": {
+                "$ref": "#/definitions/pin"
+              }
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "board_section"
+      }
+    },
+    "api_response_d": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_get_pins": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "schema": {
+                "$ref": "#/definitions/pin"
+              }
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_get_board": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "schema": {
+                "$ref": "#/definitions/board_section"
+              }
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_create": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "schema": {
+                "$ref": "#/definitions/board_section"
+              }
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_search_board": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "schema": {
+                "$ref": "#/definitions/boards"
+              }
+            }
+          }
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "pin": {
+      "type": "object",
+      "properties": {
+        "pin_id": {
+          "type": "string"
+        },
+        "alt_text": {
+          "type": "string"
+        },
+        "board_id": {
+          "type": "string"
+        },
+        "carousel_data_json": {
+          "type": "object"
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "image_base64": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "media_upload_id": {
+          "type": "integer"
+        },
+        "section": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "Pin_Status": {
+          "type": "integer",
+          "format": "int32",
+          "description": "pin Status"
+        }
+      },
+      "xml": {
+        "name": "pin"
+      }
+    },
+    "api_response_pin": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "schema": {
+              "$ref": "#/definitions/pin"
+            }
+          }
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_pin_sin_endpoint": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "schema": {
+              "$ref": "#/definitions/pin"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_pin_delete": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "$ref": "#/definitions/pin/properties/pin_id"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string",
+          "default": "ok"
+        },
+        "status": {
+          "type": "string",
+          "default": "success"
+        }
+      }
+    },
+    "api_response_pin_comments": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "api_response_search_user_pin": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "schema": {
+                "$ref": "#/definitions/pin"
+              }
+            }
+          }
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "oauth": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "default": "success"
+        },
+        "message": {
+          "type": "string",
+          "default": "OK"
+        },
+        "code": {
+          "type": "integer",
+          "default": 0
+        },
+        "access_token": {
+          "type": "string",
+          "default": "<API access token>"
+        },
+        "expires_in": {
+          "type": "integer",
+          "default": 0
+        },
+        "scope": {
+          "type": "string",
+          "default": "<Permission scopes>"
+        },
+        "token_type": {
+          "type": "string",
+          "default": "bearer"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "access_token": {
+              "type": "string",
+              "default": "<API access token>"
+            },
+            "expires_at": {
+              "type": "integer",
+              "default": 0
+            },
+            "consumer_id": {
+              "type": "string",
+              "default": "<Your app ID>"
+            },
+            "token_type": {
+              "type": "string",
+              "default": "bearer"
+            },
+            "scope": {
+              "type": "string",
+              "default": "<Permission scopes>"
+            },
+            "scope_description": {
+              "type": "string",
+              "default": "<Scope description>"
+            }
+          }
+        }
+      }
+    },
+    "domain_information": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "default": 0
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "access": {
+              "type": "string",
+              "default": "[\"view_analysis\",...]"
+            },
+            "client_details": {
+              "type": "integer"
+            },
+            "favicon": {
+              "type": "string",
+              "default": "https://www.google.com/s2/favicons?domain=somewebsite.com"
+            },
+            "id": {
+              "type": "string",
+              "default": "265994196588955964"
+            },
+            "name": {
+              "type": "string",
+              "default": "somewebsite.com"
+            },
+            "thumbnails": {
+              "type": "string",
+              "default": "[\"https://i.pinimg.com/45x45/3d/4d/85/3d4d85e3d961b12b293975c0b6677f50.jpg\",...]"
+            },
+            "type": {
+              "type": "string",
+              "default": "domain"
+            }
+          }
+        },
+        "endpoint": {
+          "type": "string",
+          "default": "/v3/pins/{pin}/"
+        },
+        "message": {
+          "type": "string",
+          "default": "OK"
+        },
+        "status": {
+          "type": "string",
+          "default": "success"
+        }
+      }
+    },
+    "domain_pins": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "default": 0
+        },
+        "data": {
+          "type": "object"
+        },
+        "endpoint": {
+          "type": "string",
+          "default": "/v3/pins/{pin}/"
+        },
+        "message": {
+          "type": "string",
+          "default": "OK"
+        },
+        "status": {
+          "type": "string",
+          "default": "success"
+        }
+      }
+    },
+    "your_domain_pins": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "default": 0
+        },
+        "data": {
+          "type": "object"
+        },
+        "endpoint": {
+          "type": "string",
+          "default": "/v3/pins/{pin}/"
+        },
+        "message": {
+          "type": "string",
+          "default": "OK"
+        },
+        "status": {
+          "type": "string",
+          "default": "success"
+        }
+      }
+    },
+    "domain_top_sample_pins": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "default": 0
+        },
+        "data": {
+          "type": "object"
+        },
+        "endpoint": {
+          "type": "string",
+          "default": "/v3/pins/{pin}/"
+        },
+        "message": {
+          "type": "string",
+          "default": "OK"
+        },
+        "status": {
+          "type": "string",
+          "default": "success"
+        }
+      }
+    },
+    "most_clicked_pins": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "default": "OK"
+        }
+      }
+    },
+    "most_repinned_pins": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "default": "OK"
+        }
+      }
+    }
+  }
+}
